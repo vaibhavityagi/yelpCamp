@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="col-6 offset-3">
+        <form class="d-inline" action="/campgrounds/<%=campground._id%>/images?_method=DELETE" method="POST">
+            <div>
+                <% campground.images.forEach(function(image, i){ %>
+                    <div class="form-check-inline">
+                        <input class="input" type="checkbox" id="img-<%= i %>" value="<%= image.filename %>"
+                            name="deleteImages[]">
+                    </div>
+                    <label for="img-<%= i %>"><img src="<%= image.thumbnail %>" alt="campgroundImage"
+                            class="img-thumbnail"></label>
+                    <br>
+                    <% }) %>
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-danger">Delete</button>
+            </div>
+        </form>
+
+        <a href="/campgrounds/<%= campground._id %>">Back to campground</a>
+
+    </div>
